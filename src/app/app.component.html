@@ -1,0 +1,29 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>Menu</ion-list-header>
+          <ion-note>koumadoulbaroud@gmail.com</ion-note>
+
+          <ion-menu-toggle *ngFor="let p of appPages; let i = index" auto-hide="false">
+            <ion-item (click)="selectedIndex = i" [class.selected]="selectedIndex == i" [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root">
+              <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list id="labels-list">
+          <ion-list-header>Liens utiles</ion-list-header>
+
+          <ion-item *ngFor="let label of labels" lines="none">
+            <ion-icon ios="bookmark-outline" md="bookmark-sharp" slot="start"></ion-icon>
+            <ion-label>{{ label }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
